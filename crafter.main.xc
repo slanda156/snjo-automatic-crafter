@@ -6,6 +6,7 @@ var $ac_screen = screen
 include "craftfunctions.xc"
 const $crafter = "crafter"
 ;const $container = "container"
+const $abc = "abcdefghijklmnopqrstuvwxyz"
 var $inventories: text
 var $crafterRelay = "crafter_relay" ; if present and connected, turns off crafter power when in sleep mode
 storage var $favorites : text
@@ -63,7 +64,8 @@ init
 	$inventories = ".b{tank_O2}.c{tank_H2}.d{tank_H2O}.e{tank_1}"
 	; Add containers to inventories
 	repeat 9 ($_i)
-		$inventories = $inventories & "." & text($_i) & "{container_" & text($_i + 1) & "}"
+		var $keyIndex = $_i + 4
+		$inventories = $inventories & "." & $abc.$keyIndex & "{container_" & text($_i + 1) & "}"
 	$linesOnScreen = floor($ac_screen.height / ($ac_screen.char_h + $spacer + $marginvert*2))-1
 	;print("lines on screen",$linesOnScreen)
 	$upX = $ac_screen.width-14
